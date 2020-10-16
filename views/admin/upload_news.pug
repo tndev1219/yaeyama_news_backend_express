@@ -1,0 +1,55 @@
+extends template/layout.pug
+
+block content
+  .m-content
+    // begin::table
+    .m-portlet
+      .m-portlet__head
+        .m-portlet__head-caption
+          .m-portlet__head-title
+            span.m-portlet__head-icon.m--hide
+              i.la.la-gear
+            h3.m-portlet__head-text
+              | PDFアップロード
+      // begin::Form
+      form#uploadForm.m-form.m-form--fit.m-form--label-align-right.m-form--group-seperator-dashed(method="POST" enctype="multipart/form-data" action="/admin/upload")
+        .m-portlet__body
+          .form-group.m-form__group.row
+            label.col-lg-2.col-form-label(for='exampleInputEmail1')
+              | 日付選択:
+            .col-lg-3
+              div
+                .input-group
+                  input#datepicker.form-control(type='text' name='uploadDate')
+              span.m-form__help
+                | 
+            label.col-lg-2.col-form-label(for='exampleInputEmail1')
+              | ファイル選択:
+            .col-lg-4
+              div
+                .custom-file
+                  input#customFile.custom-file-input(type='file' name='fileupload' accept='application/pdf')
+                  label.custom-file-label(for='customFile')
+                    | ファイル選択
+              span.m-form__help
+                | 
+          .form-group.m-form__group.row
+            label.col-lg-2.col-form-label
+              | 説明:
+            .col-lg-9
+              div
+                .m-input-icon.m-input-icon--right
+                  textarea#file_description.form-control.m-input.m-input--air(rows='10' name='description')
+                    | 
+              span.m-form__help
+                | ファイルについての説明文を入力することができます。
+        .m-portlet__foot.m-portlet__no-border.m-portlet__foot--fit
+          .m-form__actions.m-form__actions--solid
+            .row
+              .col-lg-9
+              .col-lg-3
+                button#btn_upload.btn.btn-success(type="submit")
+                  | アップロード
+
+block data_script
+    script(src='/admin/js/upload-news.js' type='text/javascript')
